@@ -33,13 +33,22 @@ class CatsController < ApplicationController
   private
 
   def load_cat
-    @cat = Cat.where("id = #{params[:id]}").visible.first
+    # SQL inyection here: http://localhost:3000/cats/1)--
+    # @cat = Cat.where("id = #{params[:id]}").visible.first
+      # render text: 'Not Found', status: '404' unless @cat
 
-    render text: 'Not Found', status: '404' unless @cat
+    # fixed version
+    # @cat = Cat.where(id: params[:id]).visible.first
+
+    # or better
+      @cat = Cat.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      render text: 'Not Found', status: '404'
   end
 
   def cats_params
-    { visible: true }.merge(params[:cat])
+    # { visible: true }.merge(params[:cat])
+    params.require(:cat).permit(:name, :birthday)
   end
 
   # Do you think this is a good place to put this logic?
