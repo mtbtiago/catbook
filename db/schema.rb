@@ -28,10 +28,6 @@ ActiveRecord::Schema.define(version: 20141021194931) do
 
   add_index "cats", ["email"], name: "index_cats_on_email", unique: true, using: :btree
 
-  create_table "cron_example_tables", force: true do |t|
-    t.datetime "current_time"
-  end
-
   create_table "cron_examples", force: true do |t|
     t.datetime "current_time"
   end
