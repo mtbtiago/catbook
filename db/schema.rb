@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020175732) do
+ActiveRecord::Schema.define(version: 20150217095455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20141020175732) do
     t.datetime "updated_at"
     t.boolean  "visible",         default: true
     t.string   "email"
-    t.text     "password_digest"
+    t.string   "password_digest"
   end
 
-  add_index "cats", ["email"], name: "index_cats_on_email", unique: true, using: :btree
+  add_index "cats", ["email"], name: "index_cats_on_email", using: :btree
 
   create_table "follower_relations", force: true do |t|
     t.integer  "cat_id"
