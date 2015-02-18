@@ -6,6 +6,9 @@ class RegistrationsController < ApplicationController
   def create
     @cat = Cat.new(cat_params)
     if @cat.save
+
+      CatMailer.welcome(@cat).deliver
+
       redirect_to cats_path
     else
       render :new

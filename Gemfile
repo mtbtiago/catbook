@@ -38,6 +38,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pundit'
 
+# delay background tasks, such sending emails
+gem 'delayed_job_active_record'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
