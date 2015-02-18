@@ -11,7 +11,12 @@ namespace :catbook do
     if Rails.env == "development"
       time = Benchmark.measure do
         1000.times do |i|
-          Cat.create!(name: Faker::Name.name, birthday: Faker::Date.birthday, visible: true)
+          Cat.create!(
+            name: Faker::Name.name, 
+            birthday: Faker::Date.birthday, 
+            visible: true,
+            email: Faker::Internet.email,
+            password: Faker::Internet.password(8))
         end
       end.real
       puts "\n%s: Seed cats database: (real: %0.6f)\n" % [Time.now, time]

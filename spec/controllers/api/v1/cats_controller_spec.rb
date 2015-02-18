@@ -15,7 +15,7 @@ RSpec.describe Api::V1::CatsController, type: :controller do
     end
 
     it "renders list of cats in json format" do
-      expected_result = JSON.generate([
+      expected_result_json = JSON.generate([
         {
           name: @cat.name,
           birthday: @cat.birthday,
@@ -40,11 +40,11 @@ RSpec.describe Api::V1::CatsController, type: :controller do
 
       get :index
 
-      expect(response.body).to eq(expected_result)
+      expect(response.body).to eq(expected_result_json)
     end
 
     it "accepts limit/offset params" do
-      expected_result = JSON.generate([
+      expected_result_json = JSON.generate([
         {
           name: @other_visible_cat.name,
           birthday: @other_visible_cat.birthday,
@@ -59,11 +59,11 @@ RSpec.describe Api::V1::CatsController, type: :controller do
 
       get :index, offset: 1, limit: 1
 
-      expect(response.body).to eq(expected_result)
+      expect(response.body).to eq(expected_result_json)
     end
 
     it "only returns specified fields" do
-      expected_result = JSON.generate([
+      expected_result_json = JSON.generate([
         {
           name: @other_visible_cat.name,
           links: {
@@ -75,11 +75,32 @@ RSpec.describe Api::V1::CatsController, type: :controller do
 
       get :index, offset: 1, limit: 1, fields: "name,links"
 
-      expect(response.body).to eq(expected_result)
+      expect(response.body).to eq(expected_result_json)
+    end
+
+    it "only returns name in json format" do
+      expected_result_json = JSON.generate([
+        {
+          name: @other_visible_cat.name
+        }
+      ])
+
+      get :index, offset: 1, limit: 1, fields: "name", format: "json"
+
+      expect(response.body).to eq(expected_result_json)
+    end
+
+    it "only returns name in xml format" do
+      # impressionant array.to_xml!!!!
+      expected_result_xml = [{ name: @other_visible_cat.name}].to_xml
+
+      get :index, offset: 1, limit: 1, fields: "name", format: "xml"
+
+      expect(response.body).to eq(expected_result_xml)
     end
 
     it "accepts order param" do
-      expected_result = JSON.generate([
+      expected_result_json = JSON.generate([
         {
           name: @cat.name,
           birthday: @cat.birthday,
@@ -104,7 +125,7 @@ RSpec.describe Api::V1::CatsController, type: :controller do
 
       get :index, order: "id ASC"
 
-      expect(response.body).to eq(expected_result)
+      expect(response.body).to eq(expected_result_json)
     end
   end
 
@@ -112,7 +133,7 @@ RSpec.describe Api::V1::CatsController, type: :controller do
     let(:cat) { create(:cat, visible: true) }
 
     it "renders cat info in json format" do
-      expected_result = JSON.generate({
+      expected_result_json = JSON.generate({
         name: cat.name,
         birthday: cat.birthday,
         followers_count: cat.follower_relations.count,
@@ -125,17 +146,17 @@ RSpec.describe Api::V1::CatsController, type: :controller do
 
       get :show, id: cat.id
 
-      expect(response.body).to eq(expected_result)
+      expect(response.body).to eq(expected_result_json)
     end
 
     it "renders specified fields" do
-      expected_result = JSON.generate({
+      expected_result_json = JSON.generate({
         name: cat.name
       })
 
       get :show, id: cat.id, fields: "name"
 
-      expect(response.body).to eq(expected_result)
+      expect(response.body).to eq(expected_result_json)
     end
 
     it "renders 404 if cat non visible" do
