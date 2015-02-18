@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141021194931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cats", force: true do |t|
+  create_table "cats", force: :cascade do |t|
     t.string   "name"
     t.date     "birthday"
     t.datetime "created_at"
@@ -28,11 +28,19 @@ ActiveRecord::Schema.define(version: 20141021194931) do
 
   add_index "cats", ["email"], name: "index_cats_on_email", unique: true, using: :btree
 
+<<<<<<< HEAD
   create_table "cron_examples", force: true do |t|
     t.datetime "current_time"
   end
 
   create_table "delayed_jobs", force: true do |t|
+=======
+  create_table "cron_examples", force: :cascade do |t|
+    t.datetime "current_time"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+>>>>>>> f5ad782eef5bb920fc15cc76e9d8cec982be27bf
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
     t.text     "handler",                null: false
@@ -48,7 +56,7 @@ ActiveRecord::Schema.define(version: 20141021194931) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "follower_relations", force: true do |t|
+  create_table "follower_relations", force: :cascade do |t|
     t.integer  "cat_id"
     t.integer  "followed_cat_id"
     t.datetime "created_at"
