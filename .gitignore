@@ -20,3 +20,5 @@
 
 # Public assets
 /public/assets
+
+/vendor/
