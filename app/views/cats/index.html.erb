@@ -58,7 +58,8 @@
           <tr>
             <% cache(cat) do %>
               <td><%= link_to cat.name, cat_path(cat) %></td>
-              <td><%= localize_date cat.birthday %></td>
+              <td><%= localize_date cat.birthday %></td> 
+              <!-- <td><%= I18n.l cat.birthday, format: :long if cat.birthday %></td> -->
               <td><%= cat.followers.count %></td>
               <td><%= cat.followed_by.count %></td>
             <% end %>

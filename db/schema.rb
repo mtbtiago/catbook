@@ -28,19 +28,11 @@ ActiveRecord::Schema.define(version: 20141021194931) do
 
   add_index "cats", ["email"], name: "index_cats_on_email", unique: true, using: :btree
 
-<<<<<<< HEAD
-  create_table "cron_examples", force: true do |t|
-    t.datetime "current_time"
-  end
-
-  create_table "delayed_jobs", force: true do |t|
-=======
   create_table "cron_examples", force: :cascade do |t|
     t.datetime "current_time"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
->>>>>>> f5ad782eef5bb920fc15cc76e9d8cec982be27bf
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
     t.text     "handler",                null: false

@@ -12,10 +12,10 @@ require 'rails_helper'
 # end
 RSpec.describe CatsHelper, type: :helper do
   describe "#localize_date" do
-    it "localizes date with short format" do
+    it "localizes date with long format" do
       date = Date.today
 
-      expect(I18n.l(date, format: :short)).to eq(helper.localize_date(date))
+      expect(I18n.l(date, format: :long)).to eq(helper.localize_date(date))
     end
 
   end
