@@ -22,6 +22,18 @@ RSpec.describe Cat, type: :model do
       expect(cat.valid?).to be false
       expect(cat.errors[:password].present?).to be true
     end
+
+  end
+
+  describe "Gravatar feature" do
+    it "Class Cat should be gravtastic" do
+      expect(Cat.is_gravtastic).to be_truthy
+    end
+
+    it "this cat should have avatar" do
+      cat = build(:cat, email: "tiago.ameller@gmail.com")
+      expect(cat.gravatar_url).to eq "https://secure.gravatar.com/avatar/d988804f6a763dfcb9992f1a89577b16.png?r=PG"
+    end
   end
 
   describe "#followers association" do

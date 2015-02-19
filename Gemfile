@@ -47,6 +47,8 @@ gem 'delayed_job_active_record'
 
 gem 'faker'
 
+gem 'gravtastic'
+
 group :development, :test do
   gem 'byebug'
   gem 'capybara'

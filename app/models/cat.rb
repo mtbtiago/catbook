@@ -1,4 +1,7 @@
 class Cat < ActiveRecord::Base
+  include Gravtastic
+  gravtastic  
+
   # http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
   # http://stackoverflow.com/questions/10139954/does-has-secure-password-use-any-form-of-salting
   has_secure_password
@@ -18,4 +21,6 @@ class Cat < ActiveRecord::Base
 
   has_many :followers,    -> { visible }, through: :follower_relations, source: :followed
   has_many :followed_by,  -> { visible }, through: :followed_relations, source: :cat
+
+
 end
