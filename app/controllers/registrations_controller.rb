@@ -6,7 +6,10 @@ class RegistrationsController < ApplicationController
   def create
     @cat = Cat.new(cat_params)
     if @cat.save
-      CatMailer.delay(run_at: 1.minute.from_now).welcome(@cat)
+      # delayed
+      #CatMailer.delay(run_at: 1.minute.from_now).welcome(@cat)
+      # same thread
+      CatMailer.welcome(@cat)
 
       redirect_to cats_path
     else
