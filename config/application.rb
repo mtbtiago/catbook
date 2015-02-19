@@ -31,5 +31,6 @@ module Catbook
       enable_starttls_auto: true,
       openssl_verify_mode:  'none'
     }
+    config.active_job.queue_adapter = :delayed_job
   end
 end

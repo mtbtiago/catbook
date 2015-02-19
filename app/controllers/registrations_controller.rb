@@ -9,7 +9,9 @@ class RegistrationsController < ApplicationController
       # delayed
       #CatMailer.delay(run_at: 1.minute.from_now).welcome(@cat)
       # same thread
-      CatMailer.welcome(@cat)
+      # CatMailer.welcome(@cat)
+      # with rails 4.2
+      CatMailer.welcome(@cat).deliver_later
 
       redirect_to cats_path
     else
