@@ -50,7 +50,7 @@ gem 'faker'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails'

@@ -71,6 +71,6 @@ RSpec.configure do |config|
   config.after do
     DatabaseCleaner.clean
   end
-  Capybara.default_driver = :selenium
+  Capybara.default_driver = :webkit
 
 end
